@@ -4,8 +4,8 @@ class Product
   attr_accessor :in_stock
 
   def initialize(title, price)
-    @title = title
-    @price = price
+    @title = title.to_s
+    @price = price.to_f.round(2)
     @in_stock = true
   end
 

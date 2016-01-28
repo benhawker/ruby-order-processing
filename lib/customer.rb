@@ -2,10 +2,11 @@ class Customer
 
   VALID_TYPES = [:web, :company]
 
-  attr_reader :type
+  attr_reader :name, :type
 
-  def initialize(type)
-    @type = type
+  def initialize(name, type)
+    @name = name.to_s
+    @type = type.to_sym
 
     validate!
   end
