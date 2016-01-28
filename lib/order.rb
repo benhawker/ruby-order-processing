@@ -15,4 +15,12 @@ class Order
 		puts "You haved added #{quantity} #{product.title}'s to your order"
 	end
 
+	def show_order
+		return products.map { |product, quantity| "Item: $#{product.price} / Quantity: #{quantity}\n" }
+	end
+
+	def order_total
+		products.inject(0){|memo, (product, quantity)| (product.price * quantity) + memo}.to_f.round(2)
+	end
+
 end
