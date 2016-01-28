@@ -1,1 +1,4 @@
-product.rb
+class Product
+
+
+end
