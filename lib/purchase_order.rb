@@ -43,7 +43,7 @@ class PurchaseOrder
 
   def create_invoice
     invoice = Invoice.new(customer)
-    order.products = @products.clone
+    invoice.products = @products.clone
   end
 
   def validate!

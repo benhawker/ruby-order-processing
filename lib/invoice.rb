@@ -9,4 +9,8 @@ class Invoice
     @payment_recieved = false
   end
 
+  def show_invoice
+    return products.map { |product, quantity| "Item: $#{product.price} / Quantity: #{quantity}\n" }
+  end
+
 end
