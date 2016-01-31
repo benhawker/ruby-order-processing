@@ -7,7 +7,7 @@ describe Order do
   let(:customer) { Customer.new("Bob", :web) }
   let(:product) { Product.new("guitar", 5) }
   let(:order) { Order.new(customer) }
-
+  let(:other_product) { Product.new("drums", 10) }
 
   describe "creating an order" do
     it 'a new order is pending by default' do
@@ -67,6 +67,20 @@ describe Order do
       order.add_product(product, 3)
       order.confirm_order(:credit_card)
       #TBC
+    end
+  end
+
+  describe "#all_products_in_stock?" do
+    it 'returns true if all products in the order are in stock' do
+      order.add_product(product, 3)
+      expect(order.send(:all_products_in_stock?)).to be true
+    end
+
+    it 'returns false if any products in the order are out of stock' do
+      order.add_product(product, 3)
+      other_product.in_stock = false
+      order.add_product(other_product, 1)
+      expect(order.send(:all_products_in_stock?)).to be false
     end
   end
 

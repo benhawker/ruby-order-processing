@@ -35,4 +35,11 @@ class Order
 		Payment.new(method_of_payment, self.total)
 	end
 
+	private
+
+	def all_products_in_stock?
+		count = @products.select { |product| product.in_stock == false }.size
+		count == 0 ? true : false
+	end
+
 end
