@@ -2,8 +2,8 @@ class Order
 
 	VALID_STATUSES = [:pending, :paid, :shipped]
 
-	attr_reader :products, :customer
-	attr_accessor :status, :total
+	attr_reader :customer
+	attr_accessor :status, :total, :products
 
 	def initialize(customer)
 		@products = {}

@@ -27,7 +27,9 @@ class PurchaseOrder
 	def confirm_purchase_order		
 		purchase_order_total
 		order = Order.new(customer)
-		order.products << @products
+		order.products = @products.clone
+		
+		return order
 	end
 
 	private
