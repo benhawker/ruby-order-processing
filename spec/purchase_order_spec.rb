@@ -4,20 +4,20 @@ require 'product'
 
 describe PurchaseOrder do
 
-	let(:web_customer) { Customer.new("Bob", :web) }
-	let(:company_customer) { Customer.new("Bob", :company) }
-	let(:purchase_order) { PurchaseOrder.new(company_customer) }
-	let(:product) { Product.new("guitar", 5) }
+  let(:web_customer) { Customer.new("Bob", :web) }
+  let(:company_customer) { Customer.new("Bob", :company) }
+  let(:purchase_order) { PurchaseOrder.new(company_customer) }
+  let(:product) { Product.new("guitar", 5) }
 
-	describe "creating a purchase order" do
-		it 'raises an error if a customer object is not supplied' do
-			expect { PurchaseOrder.new("Bob") }.to raise_error
-		end
+  describe "creating a purchase order" do
+    it 'raises an error if a customer object is not supplied' do
+      expect { PurchaseOrder.new("Bob") }.to raise_error
+    end
 
-		it 'raises an error if the customer is not a company' do
-			expect { PurchaseOrder.new(web_customer) }.to raise_error "Customer must be a company account"
-		end
-	end
+    it 'raises an error if the customer is not a company' do
+      expect { PurchaseOrder.new(web_customer) }.to raise_error "Customer must be a company account"
+    end
+  end
 
   describe "#add_product" do
     it 'adds the product to the products hash' do
@@ -48,7 +48,7 @@ describe PurchaseOrder do
   end
 
   describe "#confirm_purchase_order" do
-  	it 'creates a new Order object and copies the products hash across' do
+    it 'creates a new Order object and copies the products hash across' do
       expect { purchase_order.confirm_purchase_order }.to raise_error "Your PO appears to be empty! Add some products and try again."
     end
 
