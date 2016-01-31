@@ -59,6 +59,12 @@ describe Order do
       expect { order.confirm_order("bob") }.to raise_error "This is not a valid payment method"
     end
 
+    it 'raises an error if method_of_payment is credit card but any product is out of stock' do
+      other_product.in_stock = false
+      order.add_product(other_product, 1)
+      expect { order.confirm_order(:credit_card) }.to raise_error "Cannot make credit card payment now, as some products are out of stock"
+    end
+
     it 'raises an error if the order total is zero' do
       expect { order.confirm_order(:credit_card) }.to raise_error "Uh oh, your order appears to be empty"
     end

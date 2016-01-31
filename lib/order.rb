@@ -31,11 +31,19 @@ class Order
 	end
 
 	def confirm_order(method_of_payment)
+		if credit_card_but_products_out_stock?(method_of_payment)
+			raise "Cannot make credit card payment now, as some products are out of stock" 
+		end
+		
 		order_total
 		Payment.new(method_of_payment, self.total)
 	end
 
 	private
+
+	def credit_card_but_products_out_stock?(method_of_payment)
+		true if method_of_payment == :credit_card && !all_products_in_stock?
+	end
 
 	def all_products_in_stock?
 		count = @products.select { |product| product.in_stock == false }.size
