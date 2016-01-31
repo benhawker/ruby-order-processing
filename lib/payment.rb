@@ -1,6 +1,6 @@
 class Payment
 
-	VALID_METHODS_OF_PAYMENT = [:credit_card]
+	VALID_METHODS_OF_PAYMENT = [:credit_card, :check]
 
 	attr_accessor :method_of_payment, :amount
 

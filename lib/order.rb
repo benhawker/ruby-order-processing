@@ -34,7 +34,7 @@ class Order
 		if credit_card_but_products_out_stock?(method_of_payment)
 			raise "Cannot make credit card payment now, as some products are out of stock" 
 		end
-		
+
 		order_total
 		Payment.new(method_of_payment, self.total)
 	end
