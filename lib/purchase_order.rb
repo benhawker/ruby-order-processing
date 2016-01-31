@@ -4,7 +4,7 @@ class PurchaseOrder
 	attr_accessor :total
 
 	def initialize(customer)
-		@products= {}
+		@products = {}
 		@customer = customer
 
 		validate!
@@ -24,7 +24,8 @@ class PurchaseOrder
 		self.total = products.inject(0){|memo, (product, quantity)| (product.price * quantity) + memo}.to_f.round(2)
 	end
 
-	def confirm_purchase_order		
+	def confirm_purchase_order	
+		raise "Your PO appears to be empty! Add some products and try again." unless self.total.to_f.round(2) > 0
 		purchase_order_total
 		order = Order.new(customer)
 		order.products = @products.clone
