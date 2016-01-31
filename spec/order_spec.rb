@@ -43,7 +43,7 @@ describe Order do
     end
   end
 
-  describe "#change status" do
+  describe "#change_status" do
     it 'raises an error if the status is not included in #"{Customer::VALID_TYPES}"' do
       expect { order.change_status("bob") }.to raise_error "This is not a valid order status please try again"
     end
@@ -51,6 +51,22 @@ describe Order do
     it 'changes the status if the status given is valid' do
       order.change_status(:shipped)
       expect(order.status).to eq :shipped
+    end
+  end
+
+  describe "#confirm_order" do
+    it 'raises an error if the method_of_payment is not included in #"{Payment::VALID_METHODS_OF_PAYMENT}"' do
+      expect { order.confirm_order("bob") }.to raise_error "This is not a valid payment method"
+    end
+
+    it 'raises an error if the order total is zero' do
+      expect { order.confirm_order(:credit_card) }.to raise_error "Uh oh, your order appears to be empty"
+    end
+
+    it 'it creates a new payment object if method_of_payment is valid and order.total is > 0' do
+      order.add_product(product, 3)
+      order.confirm_order(:credit_card)
+      #TBC
     end
   end
 
