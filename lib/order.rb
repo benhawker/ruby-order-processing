@@ -1,5 +1,7 @@
 class Order
 
+	VALID_STATUSES = [:pending, :paid, :shipped]
+
 	attr_reader :products, :customer
 	attr_accessor :status
 
@@ -21,6 +23,11 @@ class Order
 
 	def order_total
 		products.inject(0){|memo, (product, quantity)| (product.price * quantity) + memo}.to_f.round(2)
+	end
+
+	def change_status(status)
+		raise "This is not a valid order status please try again" unless VALID_STATUSES.include? status
+		self.status = status
 	end
 
 end

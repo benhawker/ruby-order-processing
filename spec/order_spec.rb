@@ -43,4 +43,15 @@ describe Order do
     end
   end
 
+  describe "#change status" do
+    it 'raises an error if the status is not included in #"{Customer::VALID_TYPES}"' do
+      expect { order.change_status("bob") }.to raise_error "This is not a valid order status please try again"
+    end
+
+    it 'changes the status if the status given is valid' do
+      order.change_status(:shipped)
+      expect(order.status).to eq :shipped
+    end
+  end
+
 end
