@@ -69,10 +69,12 @@ describe Order do
       expect { order.confirm_order(:credit_card) }.to raise_error "Uh oh, your order appears to be empty"
     end
 
-    it 'it creates a new payment object if method_of_payment is valid and order.total is > 0' do
+    let(:payment) { double :payment }
+
+    it "returns a payment" do
+      expect(Payment).to receive(:new).with(:credit_card, 15.0).and_return(payment)
       order.add_product(product, 3)
-      order.confirm_order(:credit_card)
-      #TBC
+      expect(order.confirm_order(:credit_card)).to eq(payment)
     end
   end
 
