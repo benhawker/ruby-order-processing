@@ -52,9 +52,13 @@ describe PurchaseOrder do
       expect { purchase_order.confirm_purchase_order }.to raise_error "Your PO appears to be empty! Add some products and try again."
     end
 
-    it 'creates a new Order object and copies the products hash across' do
+    let(:order) { double :order }
+    #need to stub order.products
+
+    it "returns an order" do
+      expect(Order).to receive(:new).with(company_customer).and_return(order)
       purchase_order.add_product(product, 1)
-      expect(purchase_order.purchase_order_total).to eq 5.00
+      expect(purchase_order.confirm_purchase_order).to eq 5.0
     end
   end
 

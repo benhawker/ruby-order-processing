@@ -34,8 +34,6 @@ class PurchaseOrder
     return "We have generated an Invoice and created an order."
   end
 
-  private
-
   def create_order
     order = Order.new(customer)
     order.products = @products.clone
@@ -45,6 +43,8 @@ class PurchaseOrder
     invoice = Invoice.new(customer)
     invoice.products = @products.clone
   end
+
+  private
 
   def validate!
     raise "Customer must be a company account" unless customer.type == :company
