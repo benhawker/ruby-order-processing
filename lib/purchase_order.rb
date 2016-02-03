@@ -37,11 +37,15 @@ class PurchaseOrder
   def create_order
     order = Order.new(customer)
     order.products = @products.clone
+
+    return order
   end
 
   def create_invoice
-    invoice = Invoice.new(customer)
+    invoice = Invoice.new(customer, self.products)
     invoice.products = @products.clone
+
+    return invoice
   end
 
   private

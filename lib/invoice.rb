@@ -1,7 +1,7 @@
 class Invoice
 
-  attr_reader :customer, :products
-  attr_accessor :total
+  attr_reader :customer
+  attr_accessor :total, :products
 
   def initialize(customer, products)
     @products = {}
