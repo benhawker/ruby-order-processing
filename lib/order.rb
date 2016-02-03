@@ -40,8 +40,8 @@ class Order
   end
 
   def self.from_purchase_order(purchase_order)
-    new.tap(purchase_order.customer) do |invoice|
-      invoice.products = purchase_order.products.clone
+    new(purchase_order.customer) do |order|
+      order.products = purchase_order.products.clone
     end
   end
 

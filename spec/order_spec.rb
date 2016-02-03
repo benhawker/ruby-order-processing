@@ -78,13 +78,19 @@ describe Order do
     end
   end
 
-  describe '.from_purchase_order' do
-    
-  end
+  # let(:customer) { double("Customer", type: :company) }
+  let(:customer) { Customer.new("Bob", :company) }
+  let!(:purchase_order) { PurchaseOrder.new(customer) }
+  #let(:purchase_order) { double(:purchase_order, customer: customer) }
 
-    def self.from_purchase_order(purchase_order)
-    new.tap(purchase_order.customer) do |invoice|
-      invoice.products = purchase_order.products.clone
+
+  let(:customer) { double("Customer", type: :company) }
+  let(:purchase_order) { PurchaseOrder.new(customer) }
+
+  describe '.from_purchase_order' do
+    it "creates an order with the same products" do
+      @new_order = Order.from_purchase_order(purchase_order)
+      expect(@new_order.products).to eq (purchase_order.products)
     end
   end
 
