@@ -18,4 +18,8 @@ describe Invoice do
     end
   end
 
+  describe '.from_purchase_order' do
+    
+  end
+
 end

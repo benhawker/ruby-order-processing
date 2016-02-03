@@ -66,8 +66,8 @@ describe PurchaseOrder do
 
   describe "#create_invoice" do
     it "Invoice correctly recieves #from_purchase_order" do
-      expect(Order).to receive(:from_purchase_order).with(purchase_order)
-      purchase_order.create_order
+      expect(Invoice).to receive(:from_purchase_order).with(purchase_order)
+      purchase_order.create_invoice
     end
   end
 end

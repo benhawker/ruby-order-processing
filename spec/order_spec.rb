@@ -78,6 +78,16 @@ describe Order do
     end
   end
 
+  describe '.from_purchase_order' do
+    
+  end
+
+    def self.from_purchase_order(purchase_order)
+    new.tap(purchase_order.customer) do |invoice|
+      invoice.products = purchase_order.products.clone
+    end
+  end
+
   describe "#all_products_in_stock?" do
     it 'returns true if all products in the order are in stock' do
       order.add_product(product, 3)
