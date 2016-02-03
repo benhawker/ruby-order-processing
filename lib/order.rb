@@ -39,6 +39,12 @@ class Order
     Payment.new(method_of_payment, self.total)
   end
 
+  def self.from_purchase_order(purchase_order)
+    new.tap(purchase_order.customer) do |invoice|
+      invoice.products = purchase_order.products.clone
+    end
+  end
+
   private
 
   def credit_card_but_products_out_stock?(method_of_payment)

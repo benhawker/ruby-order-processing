@@ -53,20 +53,21 @@ describe PurchaseOrder do
     end
   end
 
+
+  let(:customer) { double("Customer", type: :company) }
+  let(:purchase_order) { PurchaseOrder.new(customer) }
+
   describe "#create_order" do
-    it "returns an order" do
-      expect_any_instance_of(Order).to receive(:products=).with({ product => 1 })
-      purchase_order.add_product(product, 1)
-      expect(purchase_order.create_order).to be_a(Order)
+    it "Order correctly recieves #from_purchase_order" do
+      expect(Order).to receive(:from_purchase_order).with(purchase_order)
+      purchase_order.create_order
     end
   end
 
   describe "#create_invoice" do
-    it "returns an invoice" do
-      expect_any_instance_of(Invoice).to receive(:products=).with({ product=> 1 })
-      purchase_order.add_product(product, 1)
-      expect(purchase_order.create_invoice).to be_a(Invoice)
+    it "Invoice correctly recieves #from_purchase_order" do
+      expect(Order).to receive(:from_purchase_order).with(purchase_order)
+      purchase_order.create_order
     end
   end
-
 end

@@ -13,4 +13,8 @@ class Invoice
     return products.map { |product, quantity| "Item: $#{product.price} / Quantity: #{quantity}\n" }
   end
 
+  def self.from_purchase_order(purchase_order)
+    new(purchase_order.customer, purchase_order.products.clone)
+  end
+
 end
