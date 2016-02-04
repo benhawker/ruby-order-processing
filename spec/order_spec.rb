@@ -1,6 +1,5 @@
 require 'order'
 require 'product'
-require 'customer'
 
 describe Order do
 
@@ -77,11 +76,6 @@ describe Order do
       expect(order.confirm_order(:credit_card)).to eq(payment)
     end
   end
-
-  # let(:customer) { double("Customer", type: :company) }
-  let(:customer) { Customer.new("Bob", :company) }
-  let!(:purchase_order) { PurchaseOrder.new(customer) }
-  #let(:purchase_order) { double(:purchase_order, customer: customer) }
 
 
   let(:customer) { double("Customer", type: :company) }
